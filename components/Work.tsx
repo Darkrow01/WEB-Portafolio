@@ -1,51 +1,22 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '../types';
 import { ArrowUpRight } from 'lucide-react';
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Miel Gibson | Redesign",
-    category: "UX Research / UI Design",
-    year: "2024",
-    // Asegúrate de guardar tu imagen como 'miel-gibson.jpg' en la carpeta public/images
-    image: "/images/miel-gibson.jpg", 
-    behanceUrl: "https://www.behance.net"
-  },
-  {
-    id: 2,
-    title: "ATEMPORAL:Volumen III Interstellar",
-    category: "Diseño editorial",
-    year: "2023",
-    // Asegúrate de guardar tu imagen como 'banking-app.jpg' en la carpeta public/images
-    image: "/images/banking-app.jpg",
-    behanceUrl: "https://www.behance.net/gallery/240073551/ATEMPORAL-Volumen-III-Interstellar"
-  },
-  {
-    id: 3,
-    title: "Infografía: Hollow Knight",
-    category: "Pixel art / Diseño editoral",
-    year: "2025",
-    // Asegúrate de guardar tu imagen como 'hollow-knight.jpg' en la carpeta public/images
-    image: "/images/hollow-knight.jpg",
-    behanceUrl: "https://www.behance.net/gallery/224858357/Infografia-Hollow-Knight-BRIEF"
-  },
-  {
-    id: 4,
-    title: "Brochure: 'Conoce Tokio'",
-    category: "Branding / Ilustración digital",
-    year: "2025",
-    // Asegúrate de guardar tu imagen como 'tokyo-brochure.jpg' en la carpeta public/images
-    image: "/images/tokyo-brochure.jpg",
-    behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
-  }
-];
+import { getProjects } from '../services/projectService';
 
 const Work: React.FC = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      const data = await getProjects();
+      setProjects(data);
+    };
+    loadProjects();
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     // Calculate position relative to the viewport to fix the image near cursor
