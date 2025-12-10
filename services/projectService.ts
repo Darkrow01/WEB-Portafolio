@@ -1,8 +1,8 @@
 import { Project } from '../types';
 import { config } from './config';
 
-// NICOLAS: Actualización de rutas.
-// Si tus imágenes están en 'src/images/', usamos esa ruta.
+// NICOLAS: Configuración de imágenes locales.
+// La propiedad 'image' es la ruta del archivo en tu carpeta 'images'.
 
 const localProjects: Project[] = [
   {
@@ -10,7 +10,7 @@ const localProjects: Project[] = [
     title: "Miel Gibson | Redesign",
     category: "UX Research / UI Design",
     year: "2024",
-    image: "/src/images/miel.jpg", 
+    image: "/images/miel.jpg", 
     behanceUrl: "https://www.behance.net"
   },
   {
@@ -18,7 +18,7 @@ const localProjects: Project[] = [
     title: "ATEMPORAL:Volumen III Interstellar",
     category: "Diseño editorial",
     year: "2023",
-    image: "/src/images/atemporal.jpg",
+    image: "/images/atemporal.jpg",
     behanceUrl: "https://www.behance.net/gallery/240073551/ATEMPORAL-Volumen-III-Interstellar"
   },
   {
@@ -26,7 +26,7 @@ const localProjects: Project[] = [
     title: "Infografía: Hollow Knight",
     category: "Pixel art / Diseño editoral",
     year: "2025",
-    image: "/src/images/hollow.jpg",
+    image: "/images/hollow.jpg",
     behanceUrl: "https://www.behance.net/gallery/224858357/Infografia-Hollow-Knight-BRIEF"
   },
   {
@@ -34,8 +34,8 @@ const localProjects: Project[] = [
     title: "Brochure: 'Conoce Tokio'",
     category: "Branding / Ilustración digital",
     year: "2025",
-    // Corregido a .png
-    image: "/src/images/tokio.png",
+    // Asegúrate de que tu archivo se llame exactamente 'tokio.png' (todo minúscula)
+    image: "/images/tokio.png",
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];
