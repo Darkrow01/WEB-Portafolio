@@ -51,6 +51,15 @@ const localProjects: Project[] = [
     // PEGA AQUI TU LINK DE DROPBOX
     image: formatDropboxUrl("https://www.dropbox.com/scl/fi/fttady4tf6pdbtyzqldsl/Mesa-de-trabajo-1-2x-100.jpg?rlkey=j5rsbdrobn1dt2wq3creir53b&st=0xylzblj&raw=1"),
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
+  },
+  {
+    id: 5,
+    title: "Vivo Duoc",
+    category: "UX Research",
+    year: "2024",
+    // PEGA AQUI TU LINK DE DROPBOX PARA VIVO DUOC
+    image: formatDropboxUrl("https://www.dropbox.com/scl/fi/scoe2vv0w4ly154lk9fqf/17.jpg?rlkey=iyt3ix9k8pt7d7r7gb32r7ag6&st=impn2i07&raw=1"),
+    behanceUrl: "https://www.behance.net/gallery/236925563/UX-Rearch-Duoc-UC"
   }
 ];
 
