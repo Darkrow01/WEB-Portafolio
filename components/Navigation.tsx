@@ -34,7 +34,7 @@ const Navigation: React.FC = () => {
       <a href="/" className="block group" data-hover="true">
         {!logoError ? (
           <img 
-            src="/images/logo.png" 
+            src="/images/logo.png"
             alt="Nicolas Pasten Contreras Logo" 
             className="h-10 md:h-12 w-auto object-contain"
             onError={() => setLogoError(true)}

@@ -1,8 +1,10 @@
 import { Project } from '../types';
 import { config } from './config';
 
-// NICOLAS: Configuración de imágenes locales.
-// La propiedad 'image' es la ruta del archivo en tu carpeta 'images'.
+// NICOLAS: RUTAS SIMPLIFICADAS
+// Como no tienes carpeta 'src', el código ahora buscará una carpeta 'images'
+// que debe estar junto a tu index.html.
+// Asegúrate de crear la carpeta 'images' y poner tus fotos ahí.
 
 const localProjects: Project[] = [
   {
@@ -34,7 +36,6 @@ const localProjects: Project[] = [
     title: "Brochure: 'Conoce Tokio'",
     category: "Branding / Ilustración digital",
     year: "2025",
-    // Asegúrate de que tu archivo se llame exactamente 'tokio.png' (todo minúscula)
     image: "/images/tokio.png",
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
