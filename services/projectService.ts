@@ -3,6 +3,7 @@ import { config } from './config';
 
 // Simulamos una base de datos local
 // IMPORTANTE: Las imágenes deben estar en la carpeta "public/images/"
+// Al referenciarlas aquí, NO incluyas "public", solo "/images/..."
 const localProjects: Project[] = [
   {
     id: 1,
@@ -33,7 +34,7 @@ const localProjects: Project[] = [
     title: "Brochure: 'Conoce Tokio'",
     category: "Branding / Ilustración digital",
     year: "2025",
-    image: "/public/images/tokyo-brochure.jpg",
+    image: "/images/tokyo-brochure.jpg",
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];

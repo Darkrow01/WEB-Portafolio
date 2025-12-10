@@ -31,11 +31,12 @@ const Navigation: React.FC = () => {
       }`}
     >
       {/* 
-        NICOLAS: Tu logo ahora se busca en: public/images/logo.webp
+        NICOLAS: La ruta correcta es /images/logo.webp
+        (La carpeta 'public' es invisible en la URL final)
       */}
       <a href="/" className="block" data-hover="true">
         <img 
-          src="/public/images/logo.webp" 
+          src="/images/logo.webp" 
           alt="Nicolas Pasten Contreras Logo" 
           className="h-10 md:h-12 w-auto object-contain"
           onError={(e) => {
