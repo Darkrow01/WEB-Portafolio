@@ -1,9 +1,6 @@
 import { Project } from '../types';
 import { config } from './config';
 
-// Simulamos una base de datos local
-// IMPORTANTE: Las imágenes deben estar en la carpeta "public/images/"
-// Al referenciarlas aquí, NO incluyas "public", solo "/images/..."
 const localProjects: Project[] = [
   {
     id: 1,
