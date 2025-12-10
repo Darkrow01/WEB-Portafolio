@@ -49,7 +49,7 @@ const localProjects: Project[] = [
     category: "Branding / Ilustración digital",
     year: "2025",
     // PEGA AQUI TU LINK DE DROPBOX
-    image: formatDropboxUrl("https://www.dropbox.com/scl/fi/v9icayoj3usf84a1wwc6u/Mesa-de-trabajo-1-copia.png?rlkey=hs4ue42are7sbljga02og3q2w&st=2psq6sj0&raw=1"),
+    image: formatDropboxUrl("https://www.dropbox.com/scl/fi/fttady4tf6pdbtyzqldsl/Mesa-de-trabajo-1-2x-100.jpg?rlkey=j5rsbdrobn1dt2wq3creir53b&st=0xylzblj&raw=1"),
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];
