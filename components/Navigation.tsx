@@ -31,8 +31,7 @@ const Navigation: React.FC = () => {
       }`}
     >
       {/* 
-        NICOLAS: Aquí se carga tu logo.
-        Ruta esperada: /public/images/logo.webp
+        NICOLAS: Asegúrate de que el archivo esté en: public/images/logo.avif
       */}
       <a href="#" className="block" data-hover="true">
         <img 
@@ -42,6 +41,7 @@ const Navigation: React.FC = () => {
           onError={(e) => {
             // Si la imagen no carga, mostramos el texto como respaldo
             const target = e.target as HTMLImageElement;
+            console.error("Error cargando logo en: ", target.src);
             target.style.display = 'none';
             const span = document.createElement('span');
             span.textContent = 'N.P.C.';

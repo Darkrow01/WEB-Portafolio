@@ -2,6 +2,7 @@ import { Project } from '../types';
 import { config } from './config';
 
 // Simulamos una base de datos local
+// IMPORTANTE: Las imágenes deben estar en la carpeta "public/images/"
 const localProjects: Project[] = [
   {
     id: 1,
@@ -38,11 +39,7 @@ const localProjects: Project[] = [
 ];
 
 export const getProjects = async (): Promise<Project[]> => {
-  // NOTA PARA NICOLAS: 
-  // Esta función NO usa la API Key actualmente, usa los datos de arriba.
-  // Si la página se ve, es que todo está bien.
   console.log("Cargando proyectos locales...");
-
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(localProjects);
