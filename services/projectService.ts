@@ -23,7 +23,7 @@ const localProjects: Project[] = [
     year: "2024",
     // PEGA AQUI TU LINK DE DROPBOX ENTRE LAS COMILLAS
     image: formatDropboxUrl("https://www.dropbox.com/scl/fi/25zysv2kc9f3rlo811ru7/01.-Portada.jpg?rlkey=fs1h2654ocnirt9axitjgxkuh&st=78x6fc6b&raw=0"), 
-    behanceUrl: "https://www.behance.net"
+    behanceUrl: "https://www.behance.net/gallery/240223035/UX-Miel-Gibson?"
   },
   {
     id: 2,
