@@ -34,16 +34,13 @@ const Navigation: React.FC = () => {
       <a href="/" className="block group" data-hover="true">
         {!logoError ? (
           <img 
-            src="/images/logo.png"
+            src="images/logo.png"
             alt="Nicolas Pasten Contreras Logo" 
             className="h-10 md:h-12 w-auto object-contain"
-            onError={(e) => {
-              console.error("❌ Error cargando logo. Ruta buscada: /images/logo.png");
-              setLogoError(true);
-            }}
+            onError={() => setLogoError(true)}
           />
         ) : (
-          // Logo Tipográfico de Respaldo
+          // Logo Tipográfico de Respaldo (Fallback elegante)
           <div className="flex items-center gap-1.5 font-bold text-xl tracking-tighter cursor-pointer select-none">
             <span className="text-white">N</span>
             <span className="w-1 h-1 bg-white rounded-full mt-0.5 opacity-50"></span>
