@@ -30,8 +30,25 @@ const Navigation: React.FC = () => {
           : 'py-6 px-6 md:py-10 md:px-20 mix-blend-difference'
       }`}
     >
-      <a href="#" className="text-xl font-bold tracking-tighter uppercase" data-hover="true">
-        N.P.C.
+      {/* 
+        NICOLAS: Aquí se carga tu logo.
+        Ruta esperada: /public/images/logo.webp
+      */}
+      <a href="#" className="block" data-hover="true">
+        <img 
+          src="/images/logo.webp" 
+          alt="Nicolas Pasten Contreras Logo" 
+          className="h-10 md:h-12 w-auto object-contain"
+          onError={(e) => {
+            // Si la imagen no carga, mostramos el texto como respaldo
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+            const span = document.createElement('span');
+            span.textContent = 'N.P.C.';
+            span.className = 'text-xl font-bold tracking-tighter uppercase';
+            target.parentElement?.appendChild(span);
+          }}
+        />
       </a>
 
       <ul className="flex gap-8">
