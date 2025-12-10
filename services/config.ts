@@ -4,10 +4,8 @@
 export const config = {
   // Manejo seguro de variables de entorno para Vite (import.meta.env)
   // El uso de 'as any' evita errores de TypeScript si los tipos no están definidos
-  apiKey: (import.meta as any).env?.VITE_API_KEY || '',
-  
-  // URL base por si te conectas a un backend propio
-  apiUrl: (import.meta as any).env?.VITE_API_URL || 'http://localhost:3000/api',
+  apiKey: (import.meta as any).env.VITE_API_KEY || '',
+
 };
 
 // Función de utilidad para verificar si la API Key está configurada
