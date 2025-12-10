@@ -31,9 +31,9 @@ const Navigation: React.FC = () => {
       }`}
     >
       {/* 
-        NICOLAS: Asegúrate de que el archivo esté en: public/images/logo.avif
+        NICOLAS: Tu logo ahora se busca en: public/images/logo.webp
       */}
-      <a href="#" className="block" data-hover="true">
+      <a href="/" className="block" data-hover="true">
         <img 
           src="/images/logo.webp" 
           alt="Nicolas Pasten Contreras Logo" 
