@@ -35,7 +35,7 @@ const Navigation: React.FC = () => {
       */}
       <a href="/" className="block" data-hover="true">
         <img 
-          src="/images/logo.webp" 
+          src="/public/images/logo.webp" 
           alt="Nicolas Pasten Contreras Logo" 
           className="h-10 md:h-12 w-auto object-contain"
           onError={(e) => {

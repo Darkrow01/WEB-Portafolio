@@ -33,7 +33,7 @@ const localProjects: Project[] = [
     title: "Brochure: 'Conoce Tokio'",
     category: "Branding / Ilustración digital",
     year: "2025",
-    image: "/images/tokyo-brochure.jpg",
+    image: "/public/images/tokyo-brochure.jpg",
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];
