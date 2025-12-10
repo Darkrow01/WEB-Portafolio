@@ -19,17 +19,29 @@ const Work: React.FC = () => {
     loadProjects();
   }, []);
 
-  // Resetear el estado de error cuando cambiamos de proyecto (hover)
+  // Rastreo global del mouse para asegurar coordenadas precisas en el elemento fixed
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    // Solo agregamos el listener cuando hay un proyecto en hover para optimizar
+    if (hoveredProject) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [hoveredProject]);
+
+  // Resetear el estado de error cuando cambiamos de proyecto
   useEffect(() => {
     setImageError(false);
   }, [hoveredProject]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
   return (
-    <section id="work" className="py-20 px-6 md:px-20 relative" onMouseMove={handleMouseMove} ref={listRef}>
+    <section id="work" className="py-20 px-6 md:px-20 relative" ref={listRef}>
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -46,11 +58,14 @@ const Work: React.FC = () => {
             href={project.behanceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col md:flex-row md:items-center justify-between py-12 border-b border-gray-800 hover:opacity-100 transition-all duration-300"
+            className="group relative flex flex-col md:flex-row md:items-center justify-between py-12 border-b border-gray-800 hover:opacity-100 transition-all duration-300 cursor-none"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            onMouseEnter={() => setHoveredProject(project)}
+            onMouseEnter={(e) => {
+              setMousePosition({ x: e.clientX, y: e.clientY }); // Set inicial inmediato
+              setHoveredProject(project);
+            }}
             onMouseLeave={() => setHoveredProject(null)}
             data-hover="true"
           >
@@ -73,7 +88,7 @@ const Work: React.FC = () => {
       <AnimatePresence>
         {hoveredProject && (
           <motion.div
-            className="pointer-events-none fixed z-20 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg shadow-2xl border border-white/10"
+            className="pointer-events-none fixed z-50 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg shadow-2xl border border-white/10 bg-neutral-900"
             style={{
               left: 0,
               top: 0,
@@ -82,24 +97,29 @@ const Work: React.FC = () => {
             animate={{ 
               opacity: 1, 
               scale: 1,
-              x: mousePosition.x + 20, // Offset from cursor
+              x: mousePosition.x + 20, 
               y: mousePosition.y - 150 
             }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
           >
-            {/* Si hay URL válida y no hay error, mostramos la imagen. Si no, mostramos un cuadro gris. */}
             {hoveredProject.image && !imageError ? (
               <img 
+                key={hoveredProject.image} // CRITICO: Forza a React a remontar la imagen si cambia la URL
                 src={hoveredProject.image} 
                 alt={hoveredProject.title} 
-                className="w-full h-full object-cover grayscale contrast-125 bg-surface"
-                onError={() => setImageError(true)}
+                className="w-full h-full object-cover grayscale contrast-125 bg-surface block"
+                onError={(e) => {
+                  console.error("Error cargando imagen:", hoveredProject.image);
+                  setImageError(true);
+                }}
               />
             ) : (
               <div className="w-full h-full bg-[#111] flex flex-col items-center justify-center text-gray-500 gap-2">
                 <ImageOff size={32} strokeWidth={1.5} />
-                <span className="text-xs uppercase tracking-widest font-medium">Sin vista previa</span>
+                <span className="text-xs uppercase tracking-widest font-medium">
+                  {imageError ? "Error de carga" : "Sin imagen"}
+                </span>
               </div>
             )}
           </motion.div>
