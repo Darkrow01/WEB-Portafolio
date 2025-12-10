@@ -15,9 +15,9 @@ const Navigation: React.FC = () => {
   }, []);
 
   const links = [
-    { name: 'Work', href:"https://www.behance.net/nicolaspasten3"},
-    { name: 'Sobre mi', href:"#about"},
-    { name: 'Contacto', href:"https://www.linkedin.com/in/nicolaspas-con"},
+    { name: 'Work', href:"https://www.behance.net/nicolaspasten3", external: true },
+    { name: 'Sobre mi', href:"#about", external: false },
+    { name: 'Contacto', href:"https://www.linkedin.com/in/nicolaspas-con", external: true },
   ];
 
   return (
@@ -37,10 +37,13 @@ const Navigation: React.FC = () => {
             src="/images/logo.png"
             alt="Nicolas Pasten Contreras Logo" 
             className="h-10 md:h-12 w-auto object-contain"
-            onError={() => setLogoError(true)}
+            onError={(e) => {
+              console.error("❌ Error cargando logo. Ruta buscada: /images/logo.png");
+              setLogoError(true);
+            }}
           />
         ) : (
-          // Logo Tipográfico de Respaldo (Diseño minimalista por si falla la imagen)
+          // Logo Tipográfico de Respaldo
           <div className="flex items-center gap-1.5 font-bold text-xl tracking-tighter cursor-pointer select-none">
             <span className="text-white">N</span>
             <span className="w-1 h-1 bg-white rounded-full mt-0.5 opacity-50"></span>
@@ -55,7 +58,9 @@ const Navigation: React.FC = () => {
         {links.map((link) => (
           <li key={link.name}>
             <a 
-              href={link.href} 
+              href={link.href}
+              target={link.external ? "_blank" : "_self"}
+              rel={link.external ? "noopener noreferrer" : ""}
               className="text-sm font-medium uppercase tracking-widest hover:text-gray-300 transition-colors"
               data-hover="true"
             >

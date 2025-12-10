@@ -94,7 +94,10 @@ const Work: React.FC = () => {
                 src={hoveredProject.image} 
                 alt={hoveredProject.title} 
                 className="w-full h-full object-cover grayscale contrast-125 bg-surface"
-                onError={() => setImageError(true)}
+                onError={(e) => {
+                  console.error(`❌ Error cargando imagen: ${hoveredProject.image}`);
+                  setImageError(true);
+                }}
               />
             ) : (
               <div className="w-full h-full bg-[#111] flex flex-col items-center justify-center text-gray-500 gap-2">
