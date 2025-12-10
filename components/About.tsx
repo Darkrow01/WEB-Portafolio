@@ -26,7 +26,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-sm font-bold tracking-widest text-secondary uppercase mb-8">
-            About Me
+            Sobre mi
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light mb-8">
             Hola, soy <span className="text-white font-medium">Nicolas Pasten Contreras</span>. 

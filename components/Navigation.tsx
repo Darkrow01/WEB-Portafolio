@@ -14,9 +14,9 @@ const Navigation: React.FC = () => {
   }, []);
 
   const links = [
-    { name: 'Work', href: '#work' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Work', href:"https://www.behance.net/nicolaspasten3"},
+    { name: 'Sobre mi', href:"#about"},
+    { name: 'Contacto', href:"www.linkedin.com/in/nicolas-pasten-contreras-a9a114254"},
   ];
 
   return (

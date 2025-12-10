@@ -6,35 +6,39 @@ import { ArrowUpRight } from 'lucide-react';
 const projects: Project[] = [
   {
     id: 1,
-    title: "E-Commerce Redesign",
+    title: "Miel Gibson | Redesign",
     category: "UX Research / UI Design",
     year: "2024",
-    image: "https://picsum.photos/800/600?random=1",
+    // Asegúrate de guardar tu imagen como 'miel-gibson.jpg' en la carpeta public/images
+    image: "/images/miel-gibson.jpg", 
     behanceUrl: "https://www.behance.net"
   },
   {
     id: 2,
-    title: "Banking App Interface",
-    category: "Mobile Design System",
+    title: "ATEMPORAL:Volumen III Interstellar",
+    category: "Diseño editorial",
     year: "2023",
-    image: "https://picsum.photos/800/600?random=2",
-    behanceUrl: "https://www.behance.net"
+    // Asegúrate de guardar tu imagen como 'banking-app.jpg' en la carpeta public/images
+    image: "/images/banking-app.jpg",
+    behanceUrl: "https://www.behance.net/gallery/240073551/ATEMPORAL-Volumen-III-Interstellar"
   },
   {
     id: 3,
-    title: "Travel Dashboard",
-    category: "Web App / Dashboard",
-    year: "2023",
-    image: "https://picsum.photos/800/600?random=3",
-    behanceUrl: "https://www.behance.net"
+    title: "Infografía: Hollow Knight",
+    category: "Pixel art / Diseño editoral",
+    year: "2025",
+    // Asegúrate de guardar tu imagen como 'hollow-knight.jpg' en la carpeta public/images
+    image: "/images/hollow-knight.jpg",
+    behanceUrl: "https://www.behance.net/gallery/224858357/Infografia-Hollow-Knight-BRIEF"
   },
   {
     id: 4,
-    title: "Brand Identity: 'Lumina'",
-    category: "Branding / Visual Identity",
-    year: "2022",
-    image: "https://picsum.photos/800/600?random=4",
-    behanceUrl: "https://www.behance.net"
+    title: "Brochure: 'Conoce Tokio'",
+    category: "Branding / Ilustración digital",
+    year: "2025",
+    // Asegúrate de guardar tu imagen como 'tokyo-brochure.jpg' en la carpeta public/images
+    image: "/images/tokyo-brochure.jpg",
+    behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];
 
@@ -46,6 +50,13 @@ const Work: React.FC = () => {
   const handleMouseMove = (e: React.MouseEvent) => {
     // Calculate position relative to the viewport to fix the image near cursor
     setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+
+  // Función de respaldo: si no encuentra tu imagen local, pone una aleatoria
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement;
+    target.onerror = null; // Previene bucle infinito
+    target.src = "https://picsum.photos/800/600?grayscale"; // Imagen de respaldo
   };
 
   return (
@@ -93,7 +104,7 @@ const Work: React.FC = () => {
       <AnimatePresence>
         {hoveredProject && (
           <motion.div
-            className="pointer-events-none fixed z-20 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg"
+            className="pointer-events-none fixed z-20 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg shadow-2xl"
             style={{
               left: 0,
               top: 0,
@@ -112,6 +123,7 @@ const Work: React.FC = () => {
               src={hoveredProject.image} 
               alt={hoveredProject.title} 
               className="w-full h-full object-cover grayscale contrast-125"
+              onError={handleImageError}
             />
           </motion.div>
         )}
