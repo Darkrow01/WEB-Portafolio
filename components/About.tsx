@@ -1,13 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Figma, PenTool, Image, LayoutTemplate } from 'lucide-react';
+import { Figma } from 'lucide-react';
+
+// Helper component para renderizar SVGs externos que hereden el color del texto (currentColor)
+const SvgIcon: React.FC<{ src: string }> = ({ src }) => (
+  <div 
+    className="w-5 h-5 bg-current" 
+    style={{ 
+      maskImage: `url(${src})`, 
+      WebkitMaskImage: `url(${src})`, 
+      maskSize: 'contain', 
+      WebkitMaskSize: 'contain', 
+      maskRepeat: 'no-repeat', 
+      WebkitMaskRepeat: 'no-repeat',
+      maskPosition: 'center',
+      WebkitMaskPosition: 'center'
+    }} 
+  />
+);
 
 const About: React.FC = () => {
   const tools = [
     { name: 'Figma', icon: <Figma size={20} /> },
-    { name: 'Adobe Photoshop', icon: <Image size={20} /> },
-    { name: 'Adobe Illustrator', icon: <PenTool size={20} /> },
-    { name: 'Adobe InDesign', icon: <LayoutTemplate size={20} /> },
+    { name: 'Adobe Photoshop', icon: <SvgIcon src="/images/photoshop.svg" /> },
+    { name: 'Adobe Illustrator', icon: <SvgIcon src="/images/illustrator.svg" /> },
+    { name: 'Adobe InDesign', icon: <SvgIcon src="/images/indesign.svg" /> },
     { name: 'Prototyping', icon: null },
     { name: 'Wireframing', icon: null },
     { name: 'User Research', icon: null },

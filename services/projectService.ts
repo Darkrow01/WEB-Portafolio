@@ -1,9 +1,9 @@
 import { Project } from '../types';
 import { config } from './config';
 
-// NICOLAS: RUTAS ACTUALIZADAS (Relativas)
-// Se han eliminado las barras iniciales '/' para buscar la carpeta 'images'
-// directamente en el directorio raíz donde se ejecuta el index.html.
+// NICOLAS: CONFIGURACIÓN DE RUTAS DE IMÁGENES
+// Las rutas que comienzan con "/" buscan el archivo directamente en la carpeta "public".
+// Por ejemplo: "/images/miel.jpg" busca en "public/images/miel.jpg".
 
 const localProjects: Project[] = [
   {
@@ -11,7 +11,7 @@ const localProjects: Project[] = [
     title: "Miel Gibson | Redesign",
     category: "UX Research / UI Design",
     year: "2024",
-    image: "images/miel.jpg", 
+    image: "/images/miel.jpg", 
     behanceUrl: "https://www.behance.net"
   },
   {
@@ -19,7 +19,7 @@ const localProjects: Project[] = [
     title: "ATEMPORAL:Volumen III Interstellar",
     category: "Diseño editorial",
     year: "2023",
-    image: "images/atemporal.jpg",
+    image: "/images/atemporal.jpg",
     behanceUrl: "https://www.behance.net/gallery/240073551/ATEMPORAL-Volumen-III-Interstellar"
   },
   {
@@ -27,7 +27,7 @@ const localProjects: Project[] = [
     title: "Infografía: Hollow Knight",
     category: "Pixel art / Diseño editoral",
     year: "2025",
-    image: "images/hollow.jpg",
+    image: "/images/hollow.jpg",
     behanceUrl: "https://www.behance.net/gallery/224858357/Infografia-Hollow-Knight-BRIEF"
   },
   {
@@ -35,7 +35,7 @@ const localProjects: Project[] = [
     title: "Brochure: 'Conoce Tokio'",
     category: "Branding / Ilustración digital",
     year: "2025",
-    image: "images/tokio.png",
+    image: "/images/tokio.png",
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];
