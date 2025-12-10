@@ -1,13 +1,20 @@
 import { Project } from '../types';
 import { config } from './config';
 
+// NICOLAS: Aquí están las rutas a tu carpeta local 'images'.
+// Asegúrate de que los nombres de archivo en tu carpeta coincidan EXACTAMENTE con estos:
+// 1. miel.jpg
+// 2. atemporal.jpg
+// 3. hollow.jpg
+// 4. tokio.jpg
+
 const localProjects: Project[] = [
   {
     id: 1,
     title: "Miel Gibson | Redesign",
     category: "UX Research / UI Design",
     year: "2024",
-    image: "/images/miel-gibson.jpg", 
+    image: "/images/miel.jpg", 
     behanceUrl: "https://www.behance.net"
   },
   {
@@ -15,7 +22,7 @@ const localProjects: Project[] = [
     title: "ATEMPORAL:Volumen III Interstellar",
     category: "Diseño editorial",
     year: "2023",
-    image: "/images/banking-app.jpg",
+    image: "/images/atemporal.jpg",
     behanceUrl: "https://www.behance.net/gallery/240073551/ATEMPORAL-Volumen-III-Interstellar"
   },
   {
@@ -23,7 +30,7 @@ const localProjects: Project[] = [
     title: "Infografía: Hollow Knight",
     category: "Pixel art / Diseño editoral",
     year: "2025",
-    image: "/images/hollow-knight.jpg",
+    image: "/images/hollow.png",
     behanceUrl: "https://www.behance.net/gallery/224858357/Infografia-Hollow-Knight-BRIEF"
   },
   {
@@ -31,13 +38,13 @@ const localProjects: Project[] = [
     title: "Brochure: 'Conoce Tokio'",
     category: "Branding / Ilustración digital",
     year: "2025",
-    image: "/images/tokyo-brochure.jpg",
+    image: "/images/tokio.jpg",
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];
 
 export const getProjects = async (): Promise<Project[]> => {
-  console.log("Cargando proyectos locales...");
+  console.log("Cargando proyectos...");
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(localProjects);

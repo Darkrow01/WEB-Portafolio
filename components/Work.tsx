@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '../types';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ImageOff } from 'lucide-react';
 import { getProjects } from '../services/projectService';
 
 const Work: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [imageError, setImageError] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,16 +19,13 @@ const Work: React.FC = () => {
     loadProjects();
   }, []);
 
+  // Resetear el estado de error cuando cambiamos de proyecto (hover)
+  useEffect(() => {
+    setImageError(false);
+  }, [hoveredProject]);
+
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
-  // Función de respaldo: Usamos un placeholder oscuro y profesional en lugar de fotos random
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const target = e.target as HTMLImageElement;
-    target.onerror = null; 
-    // Placeholder oscuro que dice "Preview No Disponible"
-    target.src = "https://placehold.co/800x600/121212/333333?text=Preview+No+Disponible&font=manrope"; 
   };
 
   return (
@@ -75,7 +73,7 @@ const Work: React.FC = () => {
       <AnimatePresence>
         {hoveredProject && (
           <motion.div
-            className="pointer-events-none fixed z-20 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg shadow-2xl"
+            className="pointer-events-none fixed z-20 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg shadow-2xl border border-white/10"
             style={{
               left: 0,
               top: 0,
@@ -90,12 +88,20 @@ const Work: React.FC = () => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
           >
-            <img 
-              src={hoveredProject.image} 
-              alt={hoveredProject.title} 
-              className="w-full h-full object-cover grayscale contrast-125 bg-surface"
-              onError={handleImageError}
-            />
+            {/* Si hay URL válida y no hay error, mostramos la imagen. Si no, mostramos un cuadro gris. */}
+            {hoveredProject.image && !imageError ? (
+              <img 
+                src={hoveredProject.image} 
+                alt={hoveredProject.title} 
+                className="w-full h-full object-cover grayscale contrast-125 bg-surface"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="w-full h-full bg-[#111] flex flex-col items-center justify-center text-gray-500 gap-2">
+                <ImageOff size={32} strokeWidth={1.5} />
+                <span className="text-xs uppercase tracking-widest font-medium">Sin vista previa</span>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

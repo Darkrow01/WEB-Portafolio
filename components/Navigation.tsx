@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,24 +31,24 @@ const Navigation: React.FC = () => {
           : 'py-6 px-6 md:py-10 md:px-20 mix-blend-difference'
       }`}
     >
-      <a href="/" className="block" data-hover="true">
-        <img 
-          src="/images/logo.webp" 
-          alt="Nicolas Pasten Contreras Logo" 
-          className="h-10 md:h-12 w-auto object-contain"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
-            
-            // Texto de respaldo si falla el logo
-            if (target.parentElement && !target.parentElement.querySelector('.logo-fallback')) {
-              const span = document.createElement('span');
-              span.textContent = 'N.P.C.';
-              span.className = 'logo-fallback text-xl font-bold tracking-tighter uppercase';
-              target.parentElement.appendChild(span);
-            }
-          }}
-        />
+      <a href="/" className="block group" data-hover="true">
+        {!logoError ? (
+          <img 
+            src="/images/logo.webp" 
+            alt="Nicolas Pasten Contreras Logo" 
+            className="h-10 md:h-12 w-auto object-contain"
+            onError={() => setLogoError(true)}
+          />
+        ) : (
+          // Logo Tipográfico de Respaldo (Diseño minimalista por si falla la imagen)
+          <div className="flex items-center gap-1.5 font-bold text-xl tracking-tighter cursor-pointer select-none">
+            <span className="text-white">N</span>
+            <span className="w-1 h-1 bg-white rounded-full mt-0.5 opacity-50"></span>
+            <span className="text-white">P</span>
+            <span className="w-1 h-1 bg-white rounded-full mt-0.5 opacity-50"></span>
+            <span className="text-white">C</span>
+          </div>
+        )}
       </a>
 
       <ul className="flex gap-8">
