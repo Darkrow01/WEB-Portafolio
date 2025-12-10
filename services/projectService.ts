@@ -2,7 +2,6 @@ import { Project } from '../types';
 import { config } from './config';
 
 // Simulamos una base de datos local
-// En el futuro, puedes reemplazar esto con una llamada fetch() usando config.apiKey
 const localProjects: Project[] = [
   {
     id: 1,
@@ -39,10 +38,11 @@ const localProjects: Project[] = [
 ];
 
 export const getProjects = async (): Promise<Project[]> => {
-  // Aquí podrías usar la API Key para autenticarte si fuera necesario
-  // console.log("Usando API Key:", config.apiKey);
+  // NOTA PARA NICOLAS: 
+  // Esta función NO usa la API Key actualmente, usa los datos de arriba.
+  // Si la página se ve, es que todo está bien.
+  console.log("Cargando proyectos locales...");
 
-  // Simulamos un pequeño retraso de red (opcional)
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(localProjects);
