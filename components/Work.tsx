@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '../types';
-import { ArrowUpRight, ImageOff } from 'lucide-react';
+import { ArrowUpRight, ImageOff, Loader } from 'lucide-react';
 import { getProjects } from '../services/projectService';
 
 const Work: React.FC = () => {
@@ -9,6 +9,7 @@ const Work: React.FC = () => {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,13 +20,21 @@ const Work: React.FC = () => {
     loadProjects();
   }, []);
 
-  // Resetear el estado de error cuando cambiamos de proyecto (hover)
+  // Resetear estados cuando cambiamos de proyecto (hover)
   useEffect(() => {
     setImageError(false);
+    setIsLoading(true);
   }, [hoveredProject]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+
+  // Genera una URL de screenshot automático basada en el link del proyecto
+  const getPreviewUrl = (url: string) => {
+    const encodedUrl = encodeURIComponent(url);
+    // Solicitamos un screenshot de escritorio (1280x800)
+    return `https://api.microlink.io/?url=${encodedUrl}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=800`;
   };
 
   return (
@@ -73,7 +82,7 @@ const Work: React.FC = () => {
       <AnimatePresence>
         {hoveredProject && (
           <motion.div
-            className="pointer-events-none fixed z-20 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg shadow-2xl border border-white/10"
+            className="pointer-events-none fixed z-20 hidden md:block w-[400px] h-[300px] overflow-hidden rounded-lg shadow-2xl border border-white/10 bg-[#111]"
             style={{
               left: 0,
               top: 0,
@@ -82,22 +91,45 @@ const Work: React.FC = () => {
             animate={{ 
               opacity: 1, 
               scale: 1,
-              x: mousePosition.x + 20, // Offset from cursor
+              x: mousePosition.x + 20,
               y: mousePosition.y - 150 
             }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
           >
-            {/* Si hay URL válida y no hay error, mostramos la imagen. Si no, mostramos un cuadro gris. */}
-            {hoveredProject.image && !imageError ? (
+            {/* Loading Spinner */}
+            {isLoading && !imageError && (
+              <div className="absolute inset-0 flex items-center justify-center z-0">
+                <Loader className="animate-spin text-gray-600" size={24} />
+              </div>
+            )}
+
+            {!imageError ? (
               <img 
-                src={hoveredProject.image} 
+                // Intentamos cargar el screenshot de Behance
+                src={getPreviewUrl(hoveredProject.behanceUrl)}
                 alt={hoveredProject.title} 
-                className="w-full h-full object-cover grayscale contrast-125 bg-surface"
-                onError={() => setImageError(true)}
+                className="w-full h-full object-cover object-top relative z-10 transition-opacity duration-300"
+                style={{ opacity: isLoading ? 0 : 1 }}
+                onLoad={() => setIsLoading(false)}
+                onError={(e) => {
+                  // Si falla la API, intentamos usar la imagen local si existe
+                  const target = e.target as HTMLImageElement;
+                  const localImage = hoveredProject.image;
+                  
+                  // Evitar bucle infinito: solo cambiar si la fuente actual NO es ya la imagen local
+                  if (localImage && !target.src.includes(localImage)) {
+                    target.src = localImage;
+                    // Pequeño timeout para asegurar que el usuario no vea el cambio brusco si es instantáneo
+                    setTimeout(() => setIsLoading(false), 50); 
+                  } else {
+                    setImageError(true);
+                    setIsLoading(false);
+                  }
+                }}
               />
             ) : (
-              <div className="w-full h-full bg-[#111] flex flex-col items-center justify-center text-gray-500 gap-2">
+              <div className="w-full h-full flex flex-col items-center justify-center text-gray-500 gap-2 relative z-10 bg-[#111]">
                 <ImageOff size={32} strokeWidth={1.5} />
                 <span className="text-xs uppercase tracking-widest font-medium">Sin vista previa</span>
               </div>
