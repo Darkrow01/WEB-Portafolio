@@ -38,7 +38,7 @@ const Work: React.FC = () => {
         viewport={{ once: true }}
         className="text-sm font-bold tracking-widest text-secondary uppercase mb-16 border-b border-gray-800 pb-4"
       >
-        Selected Works
+        Trabajos seleccionados
       </motion.h2>
 
       <div className="flex flex-col">
