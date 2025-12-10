@@ -19,15 +19,15 @@ const Work: React.FC = () => {
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    // Calculate position relative to the viewport to fix the image near cursor
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
-  // Función de respaldo: si no encuentra tu imagen local, pone una aleatoria
+  // Función de respaldo: Usamos un placeholder oscuro y profesional en lugar de fotos random
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
-    target.onerror = null; // Previene bucle infinito
-    target.src = "https://picsum.photos/800/600?grayscale"; // Imagen de respaldo
+    target.onerror = null; 
+    // Placeholder oscuro que dice "Preview No Disponible"
+    target.src = "https://placehold.co/800x600/121212/333333?text=Preview+No+Disponible&font=manrope"; 
   };
 
   return (
@@ -93,7 +93,7 @@ const Work: React.FC = () => {
             <img 
               src={hoveredProject.image} 
               alt={hoveredProject.title} 
-              className="w-full h-full object-cover grayscale contrast-125"
+              className="w-full h-full object-cover grayscale contrast-125 bg-surface"
               onError={handleImageError}
             />
           </motion.div>

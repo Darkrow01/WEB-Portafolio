@@ -30,22 +30,16 @@ const Navigation: React.FC = () => {
           : 'py-6 px-6 md:py-10 md:px-20 mix-blend-difference'
       }`}
     >
-      {/* 
-        NICOLAS: La ruta correcta es /images/logo.webp
-        (La carpeta 'public' es invisible en la URL final)
-      */}
       <a href="/" className="block" data-hover="true">
         <img 
-          src="/images/logo.webp?v=1" 
+          src="/images/logo.webp" 
           alt="Nicolas Pasten Contreras Logo" 
           className="h-10 md:h-12 w-auto object-contain"
           onError={(e) => {
-            // Si la imagen no carga, mostramos el texto como respaldo
             const target = e.target as HTMLImageElement;
-            // Eliminamos el console.error para mantener la consola limpia
             target.style.display = 'none';
             
-            // Verificamos si ya existe el span para no duplicarlo
+            // Texto de respaldo si falla el logo
             if (target.parentElement && !target.parentElement.querySelector('.logo-fallback')) {
               const span = document.createElement('span');
               span.textContent = 'N.P.C.';
