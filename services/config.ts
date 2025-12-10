@@ -4,7 +4,7 @@
 export const config = {
   // En aplicaciones Vite/React modernas, las variables expuestas al cliente deben empezar con VITE_
   // Si usas Create React App, usa REACT_APP_API_KEY
-  apiKey: import.meta.env.VITE_API_KEY || process.env.REACT_APP_API_KEY || '',
+  apiKey: process.env.API_KEY || process.env.REACT_APP_API_KEY || '',
   
   // URL base por si te conectas a un backend propio
   apiUrl: process.env.VITE_API_URL || 'http://localhost:3000/api',
