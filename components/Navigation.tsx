@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,24 +30,39 @@ const Navigation: React.FC = () => {
           : 'py-6 px-6 md:py-10 md:px-20 mix-blend-difference'
       }`}
     >
-      <a href="/" className="block group" data-hover="true">
-        {!logoError ? (
-          <img 
-            src="images/logo.png"
-            alt="Nicolas Pasten Contreras Logo" 
-            className="h-10 md:h-12 w-auto object-contain"
-            onError={() => setLogoError(true)}
-          />
-        ) : (
-          // Logo Tipográfico de Respaldo (Fallback elegante)
-          <div className="flex items-center gap-1.5 font-bold text-xl tracking-tighter cursor-pointer select-none">
-            <span className="text-white">N</span>
-            <span className="w-1 h-1 bg-white rounded-full mt-0.5 opacity-50"></span>
-            <span className="text-white">P</span>
-            <span className="w-1 h-1 bg-white rounded-full mt-0.5 opacity-50"></span>
-            <span className="text-white">C</span>
-          </div>
-        )}
+      <a href="/" className="block group text-white" data-hover="true" aria-label="Inicio">
+        {/* LOGO SVG - Convertido desde las coordenadas de divs proporcionadas */}
+        {/* ViewBox calculado basado en el ancho máximo (aprox 660px) y alto (156px) */}
+        <svg 
+          viewBox="0 0 660 156" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg" 
+          className="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+        >
+          {/* shape 1: width: 215.60, height: 156, left: 0, top: 0 */}
+          <rect x="0" y="0" width="215.60" height="156" fill="currentColor" />
+          
+          {/* shape 2: width: 144, height: 156, left: 515.60, top: 0 */}
+          <rect x="515.60" y="0" width="144" height="156" fill="currentColor" />
+          
+          {/* shape 3: width: 12, height: 12, left: 623.60, top: 12 */}
+          <rect x="623.60" y="12" width="12" height="12" fill="currentColor" />
+          
+          {/* shape 4: width: 24, height: 72, left: 635.60, top: 0 */}
+          <rect x="635.60" y="0" width="24" height="72" fill="currentColor" />
+          
+          {/* shape 5: width: 180, height: 156, left: 275.60, top: 0 */}
+          <rect x="275.60" y="0" width="180" height="156" fill="currentColor" />
+          
+          {/* shape 6: width: 36, height: 36, left: 215.60, top: 120 */}
+          <rect x="215.60" y="120" width="36" height="36" fill="currentColor" />
+          
+          {/* shape 7: width: 36, height: 36, left: 467.60, top: 120 */}
+          <rect x="467.60" y="120" width="36" height="36" fill="currentColor" />
+          
+          {/* shape 8: width: 54.76, height: 54.76, left: 577.71, top: 52.12 */}
+          <rect x="577.71" y="52.12" width="54.76" height="54.76" fill="currentColor" />
+        </svg>
       </a>
 
       <ul className="flex gap-8">
