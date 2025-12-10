@@ -1,12 +1,8 @@
 import { Project } from '../types';
 import { config } from './config';
 
-// NICOLAS: Aquí están las rutas a tu carpeta local 'images'.
-// Asegúrate de que los nombres de archivo en tu carpeta coincidan EXACTAMENTE con estos:
-// 1. miel.jpg
-// 2. atemporal.jpg
-// 3. hollow.jpg
-// 4. tokio.jpg
+// NICOLAS: Configuración de imágenes locales.
+// La propiedad 'image' es la ruta del archivo en tu carpeta 'images'.
 
 const localProjects: Project[] = [
   {
@@ -30,7 +26,7 @@ const localProjects: Project[] = [
     title: "Infografía: Hollow Knight",
     category: "Pixel art / Diseño editoral",
     year: "2025",
-    image: "/images/hollow.png",
+    image: "/images/hollow.jpg",
     behanceUrl: "https://www.behance.net/gallery/224858357/Infografia-Hollow-Knight-BRIEF"
   },
   {
@@ -38,7 +34,8 @@ const localProjects: Project[] = [
     title: "Brochure: 'Conoce Tokio'",
     category: "Branding / Ilustración digital",
     year: "2025",
-    image: "/images/tokio.jpg",
+    // Asegúrate de que tu archivo se llame exactamente 'tokio.png' (todo minúscula)
+    image: "/images/tokio.png",
     behanceUrl: "https://www.behance.net/gallery/240015611/Conoce-Tokio-Brochure"
   }
 ];
