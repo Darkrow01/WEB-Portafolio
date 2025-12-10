@@ -26,8 +26,8 @@ const Navigation: React.FC = () => {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 w-full flex justify-between items-center z-40 text-white transition-all duration-300 ${
         isScrolled 
-          ? 'py-4 px-6 md:px-10 bg-black/30 backdrop-blur-md border-b border-white/5 shadow-sm' 
-          : 'p-6 md:p-10 mix-blend-difference'
+          ? 'py-4 px-6 md:px-20 bg-black/30 backdrop-blur-md border-b border-white/5 shadow-sm' 
+          : 'py-6 px-6 md:py-10 md:px-20 mix-blend-difference'
       }`}
     >
       <a href="#" className="text-xl font-bold tracking-tighter uppercase" data-hover="true">
