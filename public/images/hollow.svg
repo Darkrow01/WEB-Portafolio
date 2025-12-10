@@ -1,0 +1,14 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#111827"/>
+  <rect width="800" height="600" fill="url(#paint0_linear_hollow)" fill-opacity="0.2"/>
+  <path d="M400 250C400 250 350 300 350 350C350 380 370 400 400 400C430 400 450 380 450 350C450 300 400 250 400 250Z" stroke="white" stroke-width="2" stroke-opacity="0.8"/>
+  <circle cx="385" cy="340" r="8" fill="white"/>
+  <circle cx="415" cy="340" r="8" fill="white"/>
+  <text x="400" y="520" font-family="sans-serif" font-size="24" text-anchor="middle" fill="#9CA3AF" letter-spacing="0.2em">HOLLOW KNIGHT</text>
+  <defs>
+    <linearGradient id="paint0_linear_hollow" x1="400" y1="0" x2="400" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E3A8A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+</svg>

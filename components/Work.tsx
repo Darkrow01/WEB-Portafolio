@@ -19,13 +19,12 @@ const Work: React.FC = () => {
     loadProjects();
   }, []);
 
-  // Rastreo global del mouse para asegurar coordenadas precisas en el elemento fixed
+  // Rastreo global del mouse
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
-    // Solo agregamos el listener cuando hay un proyecto en hover para optimizar
     if (hoveredProject) {
       window.addEventListener('mousemove', handleMouseMove);
     }
@@ -35,7 +34,7 @@ const Work: React.FC = () => {
     };
   }, [hoveredProject]);
 
-  // Resetear el estado de error cuando cambiamos de proyecto
+  // Resetear error al cambiar de proyecto
   useEffect(() => {
     setImageError(false);
   }, [hoveredProject]);
@@ -63,7 +62,7 @@ const Work: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             onMouseEnter={(e) => {
-              setMousePosition({ x: e.clientX, y: e.clientY }); // Set inicial inmediato
+              setMousePosition({ x: e.clientX, y: e.clientY });
               setHoveredProject(project);
             }}
             onMouseLeave={() => setHoveredProject(null)}
@@ -103,22 +102,20 @@ const Work: React.FC = () => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
           >
+            {/* Renderizado condicional: Si hay URL y no hay error, muestra IMG. Si no, muestra fallback */}
             {hoveredProject.image && !imageError ? (
-              <img 
-                key={hoveredProject.image} // CRITICO: Forza a React a remontar la imagen si cambia la URL
-                src={hoveredProject.image} 
-                alt={hoveredProject.title} 
-                className="w-full h-full object-cover grayscale contrast-125 bg-surface block"
-                onError={(e) => {
-                  console.error("Error cargando imagen:", hoveredProject.image);
-                  setImageError(true);
-                }}
-              />
+               <img 
+               key={hoveredProject.image}
+               src={hoveredProject.image} 
+               alt={hoveredProject.title} 
+               className="w-full h-full object-cover bg-surface"
+               onError={() => setImageError(true)}
+             />
             ) : (
               <div className="w-full h-full bg-[#111] flex flex-col items-center justify-center text-gray-500 gap-2">
                 <ImageOff size={32} strokeWidth={1.5} />
                 <span className="text-xs uppercase tracking-widest font-medium">
-                  {imageError ? "Error de carga" : "Sin imagen"}
+                  {imageError ? "No se pudo cargar" : "Sin imagen"}
                 </span>
               </div>
             )}
