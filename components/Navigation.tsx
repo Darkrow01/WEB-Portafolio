@@ -36,18 +36,22 @@ const Navigation: React.FC = () => {
       */}
       <a href="/" className="block" data-hover="true">
         <img 
-          src="/images/logo.webp" 
+          src="/images/logo.webp?v=1" 
           alt="Nicolas Pasten Contreras Logo" 
           className="h-10 md:h-12 w-auto object-contain"
           onError={(e) => {
             // Si la imagen no carga, mostramos el texto como respaldo
             const target = e.target as HTMLImageElement;
-            console.error("Error cargando logo en: ", target.src);
+            // Eliminamos el console.error para mantener la consola limpia
             target.style.display = 'none';
-            const span = document.createElement('span');
-            span.textContent = 'N.P.C.';
-            span.className = 'text-xl font-bold tracking-tighter uppercase';
-            target.parentElement?.appendChild(span);
+            
+            // Verificamos si ya existe el span para no duplicarlo
+            if (target.parentElement && !target.parentElement.querySelector('.logo-fallback')) {
+              const span = document.createElement('span');
+              span.textContent = 'N.P.C.';
+              span.className = 'logo-fallback text-xl font-bold tracking-tighter uppercase';
+              target.parentElement.appendChild(span);
+            }
           }}
         />
       </a>
