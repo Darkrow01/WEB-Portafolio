@@ -48,7 +48,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h2 className="text-sm font-bold tracking-widest text-secondary uppercase mb-8">
-            Tools & Skills
+            Herramientas & Habilidades
           </h2>
           
           <div className="flex flex-wrap gap-4">
