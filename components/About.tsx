@@ -1,30 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Figma } from 'lucide-react';
-
-// Helper component para renderizar SVGs externos que hereden el color del texto (currentColor)
-const SvgIcon: React.FC<{ src: string }> = ({ src }) => (
-  <div 
-    className="w-5 h-5 bg-current" 
-    style={{ 
-      maskImage: `url(${src})`, 
-      WebkitMaskImage: `url(${src})`, 
-      maskSize: 'contain', 
-      WebkitMaskSize: 'contain', 
-      maskRepeat: 'no-repeat', 
-      WebkitMaskRepeat: 'no-repeat',
-      maskPosition: 'center',
-      WebkitMaskPosition: 'center'
-    }} 
-  />
-);
+import { PhotoshopIcon, IllustratorIcon, IndesignIcon } from './BrandIcons';
 
 const About: React.FC = () => {
   const tools = [
-    { name: 'Figma', icon: <Figma size={20} /> },
-    { name: 'Adobe Photoshop', icon: <SvgIcon src="/images/photoshop.svg" /> },
-    { name: 'Adobe Illustrator', icon: <SvgIcon src="/images/illustrator.svg" /> },
-    { name: 'Adobe InDesign', icon: <SvgIcon src="/images/indesign.svg" /> },
+    { name: 'Figma', icon: <Figma size={26} /> },
+    { name: 'Adobe Photoshop', icon: <PhotoshopIcon className="w-[26px] h-[26px]" /> },
+    { name: 'Adobe Illustrator', icon: <IllustratorIcon className="w-[26px] h-[26px]" /> },
+    { name: 'Adobe InDesign', icon: <IndesignIcon className="w-[26px] h-[26px]" /> },
     { name: 'Prototyping', icon: null },
     { name: 'Wireframing', icon: null },
     { name: 'User Research', icon: null },

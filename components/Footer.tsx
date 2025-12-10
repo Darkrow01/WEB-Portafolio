@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, Instagram } from 'lucide-react';
+import { LinkedInIcon, BehanceIcon } from './BrandIcons';
 
 const Footer: React.FC = () => {
   return (
@@ -20,37 +21,13 @@ const Footer: React.FC = () => {
       <div className="flex flex-col items-start md:items-end gap-4">
         <div className="flex gap-6">
           <a href="https://www.linkedin.com/in/nicolas-pasten-contreras-a9a114254" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-3 border border-gray-800 rounded-full hover:bg-white hover:text-black transition-colors group" data-hover="true">
-            <div 
-              className="w-6 h-6 bg-current" 
-              style={{ 
-                maskImage: 'url(/images/linkedin.svg)', 
-                WebkitMaskImage: 'url(/images/linkedin.svg)',
-                maskSize: 'contain',
-                WebkitMaskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                WebkitMaskRepeat: 'no-repeat',
-                maskPosition: 'center',
-                WebkitMaskPosition: 'center'
-              }} 
-            />
+            <LinkedInIcon className="w-7 h-7 text-current" />
           </a>
           <a href="https://www.behance.net/nicolaspasten3" target="_blank" rel="noopener noreferrer" aria-label="Behance" className="p-3 border border-gray-800 rounded-full hover:bg-white hover:text-black transition-colors group" data-hover="true">
-            <div 
-              className="w-6 h-6 bg-current" 
-              style={{ 
-                maskImage: 'url(/images/behance.svg)', 
-                WebkitMaskImage: 'url(/images/behance.svg)',
-                maskSize: 'contain',
-                WebkitMaskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                WebkitMaskRepeat: 'no-repeat',
-                maskPosition: 'center',
-                WebkitMaskPosition: 'center'
-              }} 
-            />
+            <BehanceIcon className="w-7 h-7 text-current" />
           </a>
           <a href="https://www.instagram.com/so.fvcking.dead" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-3 border border-gray-800 rounded-full hover:bg-white hover:text-black transition-colors" data-hover="true">
-            <Instagram size={24} />
+            <Instagram size={28} />
           </a>
         </div>
         <p className="text-gray-600 text-sm mt-4">
